@@ -1,0 +1,71 @@
+# Third Party Tools Configuration #
+tools:
+  dv8:
+    # Convert from a JSON DSM to a binary DSM.
+    dsmj_to_dsmb:
+      # path to JSON DSM
+      dsmj_path: ''
+      # path to save binary DSM
+      dsmb_path: ''
+
+    # Merge matrices in DSM (*.dv8-dsm) files to one new matrix in  (*.dv8-dsm) file
+    hdsmb_sdsmb_to_hsdsmb:
+      # path to the matrix from hdsmb file
+      hdsmb_path: ''
+      # path to the matrix from sdsmb file
+      sdsm_path: ''
+      # path to save the merged matrices in hsdsm.dv8-dsm file
+      hsdsmb_path: ''
+
+    # Convert a json cluster file, clsxj, to a binary cluster file, clsxb.
+    clsxj_to_clsxb:
+      # path to the input file project-hier.json
+      clsxj_path: ''
+      # path to clustering file (*.dv8-clsx)
+      clsxb_path: ''
+
+    # Detect Architecture anti-patterns
+    architectural_flaws:
+      # path to the merged matrix input file dv8-dsm
+      hsdsmb_path: ''
+
+      # path to architecture folder
+      flaws_path: ''
+
+      # (For Clique detection) Filtered dependencies for clique detection. Multiple dependencies should be delimited using ",".
+      # Ex. imports,includes,writes. Use "*" to select all the dependency types.
+      # Default value is "call.use".
+      cliqueDepends: 'call,use'
+
+      # (For Crossing detection) Threshold of co-change between two files.Default is 2.
+      crossingCochange: 2
+
+      # (For Crossing detection) The number of other files that depend on it >= "crossingFanIn". Default is 4.
+      crossingFanIn: 4
+
+      # (For Crossing detection) The number of other files it depends on >= "crossingFanOut". Default is 4.
+      crossingFanOut: 4
+
+      # (For Modularity Violation detection) Threshold of co-change between two files. Default is 2.
+      mvCochange: 2
+
+      # (For Unstable Interface detection) Threshold of co-change between two files. Default is 2.
+      uiCochange: 2
+
+      # (For Unhealthy Inheritance detection) Filtered dependencies for unhealthy inheritance detection. Multiple dependencies should be delimited using ",".
+      #  Ex. imports,includes,writes. Use "*" to select all the dependency types.
+      # Default value is "call,use".
+      uihDepends: 'call,use'
+
+      # (For Unhealthy Inheritance detection) Dependencies for unhealthy inheritance detection. Multiple dependencies should be delimited using ",".
+      # Ex. extend,implement,base.
+      # Default value is "extend,implement,public,private,virtual public".
+      uihInheritance: 'extend,implement,public,private,virtual'
+
+      # (For Unstable Interface detection) Threshold of the number of co-changed (more than "co-change" times) files.
+      # For example, 10 means at least 10 other co-changed files. Default is 10.
+      historyImpact: 10
+
+      # (For Unstable Interface detection) Threshold of value < 1 means % of all files are dependents. For example, 0.01 means 1% of all files are dependents; a value >=1 refers to the absolute number of dependents.
+      # For example, 10 means a file has at least 10 dependents. Default is 0.01.
+      uiStructImpact: 0.01
